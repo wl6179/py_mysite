@@ -1,0 +1,19 @@
+﻿<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<head>
+		<title>Search Result!</title>
+	</head>
+<body>
+	<p><h1>You searched for: <strong style='color:red;'>{{ query }}</strong>{{ "a><=b"|safe }}</h1></p>
+	{% if books %}
+		<p>Found {{ books|length }} book{{ books|pluralize }}.找到啦！</p>
+		<ul>
+			{% for book in books %}
+			<li>{{ book.title }}</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p style="color:red;">No books matched your search criteria.（谋啊~）</p>
+	{% endif %}
+</body>
+</html>

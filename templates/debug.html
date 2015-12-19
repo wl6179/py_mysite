@@ -1,0 +1,36 @@
+﻿<html>
+<head>
+<title>django comment用法|中国web开发档案</title>
+<meta name="keywords" content="django,comments" />
+<meta name="description" content="定制comments组件,实现更加美观的django comments." />
+<meta charset="utf-8"/>
+<style type="text/css"> 
+	label{display:inline;float:left;width:80px;} input,textarea{width:340px;} textarea{height:80px;} input[type=submit]{width:120px;margin-left:300px;}
+</style>
+</head>
+<body>
+	<!--69704321-3221-11e1-ae43-005056c00008-->
+	<!--django comments组件用法实例-->
+	<!--定制comments组件-->
+	{% load comments %}
+	{% get_comment_form for books.lession 1 as form1 %}
+	<form action="{% comment_form_target %}" method="post">
+		{% csrf_token %}
+		
+		{{ form1.object_pk }}
+		{{ form1.content_type }}
+		{{ form1.timestamp }}
+		{{ form1.security_hash }}
+		
+		<!--{{ form1 }}-->
+		<p><label for="id_name">姓名：</label><input name="name" id="id_name"></p>
+		<p><label for="id_email">email：</label><input name="email" id="id_email"></p>
+		<p><label for="id_url">网站：</label><input name="url" id="id_url"></p>
+		<p><label for="id_comment">评论：</label></p>
+		<p><textarea name="comment" id="id_comment"></textarea></p>
+		<p><input name="post" value="发表" type="submit" /></p>
+		<!--<input type="hidden" name="next" value="/" />-->
+	</form>
+	
+</body>
+</html>

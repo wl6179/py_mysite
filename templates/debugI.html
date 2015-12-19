@@ -1,0 +1,43 @@
+﻿<html>
+<head>
+	<title>django comment用法|中国web开发档案</title>
+	<meta name="keywords" content="django,comments" />
+	<meta name="description" content="django使用comments组件实例和django comments用法" />
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+	<!--1ea06611-3201-11e1-acfa-005056c00008-->
+	<!--django comments组件用法实例-->
+	<!--以下的两段代码就是django commonts调用的代码--> 
+	{% load comments %}
+	{% render_comment_form for books.lession 1 %}
+
+	<!--以下的内容是comments组件自动生成的
+	<form action="/comments/post/" method="post">
+	<div style="display:none;"><input type="hidden" id="csrfmiddlewaretoken" name="csrfmiddlewaretoken" value="f74a06777ce5e6312d73473dee19b244"></div> 
+	<div><input type="hidden" name="content_type" value="books.lession" id="id_content_type"></div>
+	<div><input type="hidden" name="object_pk" value="1" id="id_object_pk"></div>
+	<div><input type="hidden" name="timestamp" value="1325152357" id="id_timestamp"></div>
+	<div><input type="hidden" name="security_hash" value="b87655edfdff80a00c0546b7523ccdf73f7616ab" id="id_security_hash"></div> 
+	<p><label for="id_name">名称</label> <input id="id_name" type="text" name="name" maxlength="50"></p>
+	<p><label for="id_email">Email 地址</label> <input type="text" name="email" id="id_email"></p>
+	<p><label for="id_url">URL</label> <input type="text" name="url" id="id_url"></p>
+	<p><label for="id_comment">评论</label> <textarea id="id_comment" rows="10" cols="40" name="comment"></textarea></p>
+	<p style="display:none;"><label for="id_honeypot">如果你在该字段中输入任何内容，那么你的评论就会被视为垃圾评论。</label> <input type="text" name="honeypot" id="id_honeypot"></p>
+	<p class="submit"> <input type="submit" name="post" class="submit-post" value="张贴"> <input type="submit" name="preview" class="submit-preview" value="预览"> </p>
+	</form> -->
+
+	<!--调用comments的代码-->
+	{% get_comment_count for books.lession 1 as comment_count %}
+	<p>books Lession 1共有 {{comment_count}} 条评论</p>
+	
+	<!--输出cooments内容-->
+	<p>以下是评论的内容：</p>
+	{% get_comment_list for books.lession 1 as comment_list %}
+	{% for comment in comment_list %}
+		<p>{{comment.comment}}</p>
+	{% endfor %}
+
+</body>
+</html>

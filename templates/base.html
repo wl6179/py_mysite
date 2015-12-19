@@ -1,0 +1,16 @@
+﻿<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<head>
+		<title>Base</title>
+	</head>
+<body>
+	
+	{% autoescape off %}
+		
+		<h1>{% block title %}{% endblock %}</h1>
+		<P>{% block content %}{% endblock %}</P>
+		
+	{% endautoescape %}
+	
+</body>
+</html>

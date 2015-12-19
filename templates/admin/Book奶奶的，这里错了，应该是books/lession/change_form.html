@@ -1,0 +1,30 @@
+{% extends "admin/change_form.html" %}
+
+{% block extrahead %}{{ block.super }}
+{% url 'admin:jsi18n' as jsi18nurl %}
+<script type="text/javascript" src="/static/javascript/plus/ueditor/editor_config.js"></script>
+<script type="text/javascript" src="/static/javascript/plus/ueditor/editor_all_min.js"></script>
+<script type="text/javascript" src="/static/javascript/lib/cncode.js"></script>
+<link rel="stylesheet" href="/static/javascript/plus/ueditor/themes/default/ueditor.css"/>
+<style type="text/css">.edui-editor{width:960px;}</style>
+<script type="text/javascript">
+window.onload = function(){
+    var content = new baidu.editor.ui.Editor({textarea:'content'});
+        content.render("id_content");
+    django.jQuery('form').submit(function()
+    {
+        content.sync();
+    });
+}
+
+django.jQuery(function()
+{
+    var $ = django.jQuery;
+    $('#id_title').focusout(function()
+    {
+        $('#id_seotitle').val( pinyin.go($(this).val(),'-') );
+    });
+});
+</script>
+<script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
+{% endblock %}

@@ -1,0 +1,42 @@
+﻿<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<head>
+		<title>Search for {{ ip_address }}</title>
+		
+		<style type="text/css">
+			ul.errorlist {
+				margin: 0;
+				padding: 0;
+			}
+			.errorlist li {
+				background-color: red;
+				color: white;
+				display: block;
+				font-size: 11px;
+				margin: 0 0 3px;
+				padding: 4px 5px;
+			}
+		</style>
+		
+	</head>
+<body>
+	<h1>出版书籍搜索引擎 </h1>
+	
+	( user:  {{ user }} )
+	
+	{% if errors %}
+	<ul class="errorlist">
+		{% for error in errors %}
+		<li>{{ error }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	<form action="" method="post">
+		{% csrf_token %}
+		
+		<input type="text" name="q">
+		<input type="submit" value="Search搜书">
+		
+	</form>
+</body>
+</html>
